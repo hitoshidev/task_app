@@ -1,5 +1,6 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
+import { Button } from '@material-ui/core'; //Buttonをインポート
 
 function Example() {
     return (
@@ -7,9 +8,10 @@ function Example() {
             <div className="row justify-content-center">
                 <div className="col-md-8">
                     <div className="card">
-                        <div className="card-header">Example Component</div>
+                        <div className="card-header">aaa</div>
 
                         <div className="card-body">I'm an example component!</div>
+                        <Button color="primary" variant="contained">Hello World</Button> 
                     </div>
                 </div>
             </div>
@@ -19,6 +21,6 @@ function Example() {
 
 export default Example;
 
-const container = document.getElementById('app');
-const root = createRoot(container);
-root.render(<Example tab="home" />);
+if (document.getElementById('app')) {
+    ReactDOM.render(<Example />, document.getElementById('app'));
+}
