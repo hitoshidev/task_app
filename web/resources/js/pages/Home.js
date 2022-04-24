@@ -2,7 +2,9 @@
 import React from 'react';
 import { Button, Card } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { useState, useEffect } from 'react';
 import MainTable from '../components/MainTable'
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => createStyles({
     card: {
@@ -28,10 +30,29 @@ let rows = [
     },
 ]
 
+
+
+
 function Home() {
 
     const classes = useStyles();
+    
+    const getPostsData = () => {
+        axios.get('api/posts')
+            .then(response => {
+                console.log(response.status)
+                console.log(response.data);
+                setPosts(response.data);
+            })
+            .catch(() => {
+                console.log('error connect');
+            });
+    };
 
+    useEffect(() => {
+        getPostsData();
+    }, []);
+    
     return (
         <div className="container">
             <div className="row justify-content-center">
