@@ -35,8 +35,9 @@ function Home() {
             .then(response => {
                 setPosts(response.data);
             })
-            .catch(() => {
-                console.log('error connect');
+            .catch(error => {
+                console.log(error);
+                console.log('error connect in getPostsData');
             });
     };
 
@@ -73,7 +74,7 @@ function Home() {
         rows.push({
             name: post.name,
             content: post.content,
-            editBtn: <Button color="secondary" variant="contained">編集</Button>,
+            editBtn: <Button color="secondary" variant="contained" key={post.id} href={`/post/edit/${post.id}`}>編集</Button>, 
             deleteBtn: <Button color="primary" variant="contained">完了</Button>,
         })
     );
